@@ -64,9 +64,15 @@ def quick_sort(gymList, start, end, compare_func):
 gymList:list = []
 gym1 = Gym("900712192", "European Hardcore", "Chipre", "311 6987561")
 gym2 = Gym("900987652", "Muscle Center", "La Sultana", "311 9863572")
+gym3 = Gym(890806254, "GYM Fit", "Los Cedros", "315 6478591")
+gym4 = Gym(901698753, "Madness Muscle", "La Florida", "310 6598321")
+gym5 = Gym(800569723, "Training Center", "Milán", "311 9876532")
 
 gymList.append(gym1)
 gymList.append(gym2)
+gymList.append(gym3)
+gymList.append(gym4)
+gymList.append(gym5)
 
 quick_sort(gymList, 0, len(gymList) - 1, lambda x, y: x.nit < y.nit)
 for Gym in gymList:
