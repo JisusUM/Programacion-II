@@ -61,9 +61,11 @@ def quick_sort(gymList, start, end, compare_func):
     quick_sort(gymList, start, p-1, compare_func)
     quick_sort(gymList, p+1, end, compare_func)
 
-gymList:list = []
+gymList = []
 gym1 = Gym("900712192", "European Hardcore", "Chipre", "311 6987561")
 gym2 = Gym("900987652", "Muscle Center", "La Sultana", "311 9863572")
+
+
 
 gymList.append(gym1)
 gymList.append(gym2)
