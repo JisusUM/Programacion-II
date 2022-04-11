@@ -3,10 +3,6 @@ from datetime import date, datetime
 #from Enums import ProductType
 from typing import Any
 
-from numpy import array
-
-import 
-from itertools import product
 
 
 class Product :
