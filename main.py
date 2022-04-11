@@ -242,8 +242,6 @@ if __name__ == '__main__':
             if opt == '0':
                 print('Adios')
                 break
-            elif opt == '1':
-                optUser()
             elif opt == '2':
                 optItem()
             elif opt == '3':
