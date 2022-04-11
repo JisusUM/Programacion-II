@@ -70,8 +70,7 @@ for Campus in campusList:
     print(Campus)
 
 
-move crud
-
+11
 
 
 
