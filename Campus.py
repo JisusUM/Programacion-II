@@ -1,4 +1,4 @@
-class Campus:
+class Campus: ##
     # Constructor
     def __init__(self, __campusNit:int, __campusName: str, __campusPhone: str,
                 __campusAddreess: str, __sizeParking: int):
