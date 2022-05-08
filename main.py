@@ -602,14 +602,14 @@ if __name__ == '__main__':
         quick_sort(campus, start, p-1, compare_func)
         quick_sort(campus, p+1, end, compare_func)
 
-        campus=[]
-        campus1 = Campus("900712196", "European Hardcore", "3205456526", "ldsjfodsjfoisa@gmail.com")
-        campus.append(campus1)
-        campus2 = Campus("900712196", "European Hardcore", "3205456526", "ldsjfodsjfoisa@gmail.com")
-        campus.append(campus2)
-        quick_sort(campus, 0, len(campus) - 1, lambda x, y: x.campusNit < y.campusNit)
-        for Campus in campus:
-            print(Campus)
+    campus=[]
+    """campus1 = Campus("900712196", "European Hardcore", "3205456526", "ldsjfodsjfoisa@gmail.com")
+    campus.append(campus1)
+    campus2 = Campus("900712196", "European Hardcore", "3205456526", "ldsjfodsjfoisa@gmail.com")
+    campus.append(campus2)"""
+    quick_sort(campus, 0, len(campus) - 1, lambda x, y: x.campusNit < y.campusNit)
+    for Campus in campus:
+        print(Campus)
     
 
 
