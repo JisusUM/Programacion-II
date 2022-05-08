@@ -153,7 +153,7 @@ if __name__ == '__main__':
             monto = int(input("ingrese el monto: "))
             estado = bool(input("Si- True - No - False: "))
             descripcion =str(input("ingrese la descripcion: "))
-            tipo = type (input ("ingrese el tipo: "))
+            tipo = str (input ("ingrese el tipo: "))
             proveedor = input ("ingrese el proveedor: ")
             itemNuevo = Item(iditem,nombre,monto,estado,descripcion,tipo,proveedor)
             listaItem.append(itemNuevo)#append lo que hace es agragar en la cola el nuevo dato , depes del ultimo elemento + 1
@@ -602,14 +602,14 @@ if __name__ == '__main__':
         quick_sort(campus, start, p-1, compare_func)
         quick_sort(campus, p+1, end, compare_func)
 
-    campus:list=[]
-    campus1 = Campus("900712196", "European Hardcore", "Chipre", "cualquier cosa", True, 13, False, optUser())
-    campus.append(campus1)
-    campus2 = Campus("800206239", "MMA Training", "La Sultana", "cualquier otra cosa", False, 0, True, optUser())
-    campus.append(campus2)
-    quick_sort(campus, 0, len(campus) - 1, lambda x, y: x.campusNit < y.campusNit)
-    for Campus in campus:
-        print(Campus)
+        campus=[]
+        campus1 = Campus("900712196", "European Hardcore", "3205456526", "ldsjfodsjfoisa@gmail.com")
+        campus.append(campus1)
+        campus2 = Campus("900712196", "European Hardcore", "3205456526", "ldsjfodsjfoisa@gmail.com")
+        campus.append(campus2)
+        quick_sort(campus, 0, len(campus) - 1, lambda x, y: x.campusNit < y.campusNit)
+        for Campus in campus:
+            print(Campus)
     
 
 

@@ -38,11 +38,10 @@ class Item:
 Cola = []
 if __name__ == '__main__':
     while True:
-        msg:str = "Colas Circulares"
-        titulo:str = "Opciones   a realiar"
-        opciones = ["Agregar  dato","Eliminar dato","Verificar si la cola esta vacia","Mostrar","Elementos"]
+        msg:str = "Colas Circulares--Clase Item"
+        titulo:str = "Opciones a realizar"
+        opciones = ["Agregar  accesorio","Eliminar acesorio","Verificar si la cola esta vacia","Mostrar accesorios","Aplicar pila"]
         elementos = print("Elementos en cola: ",len(Cola))
-        resultado =str(elementos)
         menu = eg.indexbox(msg,titulo,opciones,elementos)
         while True:
             if menu == 0:
@@ -77,9 +76,15 @@ if __name__ == '__main__':
                 eg.msgbox(msg=str(Cola),title="Estado actual de la cola ")
                 break
             if menu == 4:
-                elementos = print("Pilas ",len(Cola))
-                eg.msgbox(resultado=str(elementos))
-                break
+                msg1 = "Agregar datos"
+                titulo1 = "Agregar algun dato"
+                opciones1 = ["Agregar","Salir"]
+                agrega = eg.indexbox(msg1, titulo1, opciones1)
+                if agrega == 0:
+                    dato = eg.enterbox(msg ="Agrega un dato cualquiera", title="Agrega un dato")
+                    Cola.append(dato)
+                else:
+                    break
             if menu == 5:
                 break
         if menu == 5:
