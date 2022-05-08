@@ -1,25 +1,6 @@
-from enum import Enum
-from datetime import date
-from typing import Any
-##from Enums import Eps, Rh, Gender, Purpose, Ranking
-from datetime import date, time, datetime
-# Imports de las clases pendientes
-"""
-#import RoutineHistory
-"""
-# imports de clases
-import MedicalControl
-import Routine
-import EmployeeSchedule
-import Bill
-import MonthlyPay
-import UserSchedule
-import RoutineHistory
-
-#Creación de la clase usuario
 class userCrud:
     # Declaración del constructor
-    def __init__(self, __dni:int, __name:str, __lastName:str, __gender:Gender, __phoneNumber:str, __emergencyContact:str,
+    def __init__(self, __dni:int, __name:str, __lastName:str, __gender:str, __phoneNumber:str, __emergencyContact:str,
                 __emailAddress:str, __address:str):
 
         # Datos de entrada
@@ -28,16 +9,17 @@ class userCrud:
         self.lastName = __lastName
         self.gender = __gender
         self.phoneNumber = __phoneNumber
-        self.emergencyContact = __emergencyContact
-        self.emailAddress = __emailAddress
-        self.address = __address
+  
+      
 
-(10539876534, "Jesus","Lopez", "Masculino", "311 6987561", "Ernesto Lopez", "jhhlopez64@gmail.com", "Chipre")
-(10539876534, "Jesus","Lopez", "Masculino", "311 6987561", "Ernesto Lopez", "jhhlopez64@gmail.com", "Chipre")
+#10539876534, "Jesus","Lopez", "Masculino", "311 6987561", "Ernesto Lopez", "jhhlopez64@gmail.com", "Chipre")
+#(10539876534, "Jesus","Lopez", "Masculino", "311 6987561", "Ernesto Lopez", "jhhlopez64@gmail.com", "Chipre")
 
 
 # getter && setter STARTS
     # Getter para dni
+    def __str__(self):
+        return f"dni : {self.dni} || Nombre del Usuario : {self.name} || Apellido: {self.lastName} || Genero: {self.gender} || Telefono : {self.phoneNumber}"
     def getDni(self):
         return self.dni
 
@@ -69,39 +51,5 @@ class userCrud:
     def setPhoneNumber(self, __phoneNumber):
         self.phoneNumber = __phoneNumber
 
-    # getter && setter para emergencyContact
-    def getEmergencyContact(self):
-        return self.emergencyContact
 
-    def setEmergencyContact(self, __emergencyContact):
-        self.emergencyContact = __emergencyContact
-
-    # getter && setter para address
-    def getAddress(self):
-        return self.address
-
-    def setEmailAddress(self, __address):
-        self.address = __address
-        
-    def getEmailAddress(self):
-            return self.emailAddress
-    def setAddress(self, __emailAddress):
-        self.EmailAddress = __emailAddress
-            
-
-    def quick_sort(list, start, end, compare_func):
-        if start >= end:
-            return
-
-        p = partition(list, start, end, compare_func)
-        quick_sort(list, start, p-1, compare_func)
-        quick_sort(list, p+1, end, compare_func)
-            
-        list=[]
-        gym1 = Gym(900712196, "European Hardcore", "Chipre", "311 6987561")
-        list.append(gym1)
-        gym2 = Gym(800206239, "MMA Training", "La Sultana", "315 9876325")
-        list.append(gym2)
-        quick_sort(list, 0, len(list) - 1, lambda x, y: x.nit < y.nit)
-        for Gym in list:
-            print(Gym) 
+    
