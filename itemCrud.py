@@ -4,10 +4,10 @@ from typing import Any
 
 
 class Item:
-    def __init__(self, iditem:int,nombre:str,monto:float,estado:bool,descripcion:str,tipo:type,proveedor:Any):
+    def __init__(self, iditem:int,nombre:str,monto:int,estado:bool,descripcion:str,tipo:type,proveedor:Any):
         self.iditem:int = iditem
         self.nombre:str = nombre
-        self.monto:float = monto
+        self.monto:int = monto
         self.estado:bool = estado
         self.descripcion:str = descripcion 
         self.tipo:type = tipo

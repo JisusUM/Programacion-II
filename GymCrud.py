@@ -1,9 +1,9 @@
 # Crear clase Gym
 class Gym:
     # Constructor
-    def __init__(self, nit:str, name:str, address:str, phone:str):
+    def __init__(self, nit:int, name:str, address:str, phone:str):
         # Datos de entrada
-        self._nit:str = nit
+        self._nit:int = nit
         self._name:str = name
         self._address:str = address
         self._phone:str = phone
@@ -31,54 +31,4 @@ class Gym:
     def setAddress(self,_address):
         self._address = _address
 
-#algoritmo de ordenamiento 
-def partition(gymList, start, end, compare_func):
-    pivot = gymList[start]
-    low = start + 1
-    high = end
 
-    while True:
-        while low <= high and compare_func(gymList[high], pivot):
-            high = high - 1
-
-        while low <= high and not compare_func(gymList[low], pivot):
-            low = low + 1
-
-        if low <= high:
-            gymList[low], gymList[high] = gymList[high], gymList[low]
-        else:
-            break
-
-    gymList[start], gymList[high] = gymList[high], gymList[start]
-
-    return high
-
-def quick_sort(gymList, start, end, compare_func):
-    if start >= end:
-        return
-
-    p = partition(gymList, start, end, compare_func)
-    quick_sort(gymList, start, p-1, compare_func)
-    quick_sort(gymList, p+1, end, compare_func)
-
-gymList = []
-gym1 = Gym("900712192", "European Hardcore", "Chipre", "311 6987561")
-gym2 = Gym("900987652", "Muscle Center", "La Sultana", "311 9863572")
-gym3 = Gym(890806254, "GYM Fit", "Los Cedros", "315 6478591")
-gym4 = Gym(901698753, "Madness Muscle", "La Florida", "310 6598321")
-gym5 = Gym(800569723, "Training Center", "Milán", "311 9876532")
-
-
-
-gymList.append(gym1)
-gymList.append(gym2)
-gymList.append(gym3)
-gymList.append(gym4)
-gymList.append(gym5)
-
-quick_sort(gymList, 0, len(gymList) - 1, lambda x, y: x.nit < y.nit)
-for Gym in gymList:
-    print(Gym)
-
-
-111

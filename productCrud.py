@@ -1,12 +1,8 @@
 from enum import Enum
 from datetime import date, datetime
-#from Enums import ProductType
 from typing import Any
-#from SupplierCrud import Proveedor
 
-
-
-class Product :
+class Product:
     def __init__(self, productId:int,productNombre:str,precio:float,marca:str,vencimiento:datetime,disponible:bool,proveedor:Any):
         self.productId:int= productId
         self.productNombre:str = productNombre
@@ -15,10 +11,10 @@ class Product :
         self.vencimiento:datetime = vencimiento
         self.disponible:bool = disponible
         self.proveedor = proveedor
-
+        
 
     def __str__(self):
-        return f"= {str(self.productNombre)},precio= {str(self.precio)}"
+        return f"Id Produc {str(self.productId)},Nombre {str(self.productNombre)},precio= {str(self.precio)}"
     def getProductNombre(self):
         return self.productNombre
     def getPrecio(self):
