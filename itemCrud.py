@@ -1,5 +1,8 @@
 from time import monotonic
 from typing import Any
+from typing import Any
+from xml.dom.minidom import Element
+import easygui as eg
 #from SupplierCrud import Proveedor
 
 
@@ -30,3 +33,54 @@ class Item:
         self.tipo = tipo
     def setProveedor(self,proveedor):
         self.proveedor = proveedor
+
+
+Cola = []
+if __name__ == '__main__':
+    while True:
+        msg:str = "Colas Circulares"
+        titulo:str = "Opciones   a realiar"
+        opciones = ["Agregar  dato","Eliminar dato","Verificar si la cola esta vacia","Mostrar","Elementos"]
+        elementos = print("Elementos en cola: ",len(Cola))
+        resultado =str(elementos)
+        menu = eg.indexbox(msg,titulo,opciones,elementos)
+        while True:
+            if menu == 0:
+                msg1 = "Agregar datos"
+                titulo1 = "Agregar algun dato"
+                opciones1 = ["Agregar","Salir"]
+                agrega = eg.indexbox(msg1, titulo1, opciones1)
+                if agrega == 0:
+                    dato = eg.enterbox(msg ="Agrega un dato cualquiera", title="Agrega un dato")
+                    Cola.append(dato)
+                else:
+                    break
+
+            if menu == 1:
+                msg1 = "Eminar dato"
+                titulo1 = "Eliminar algun dato"
+                opciones1=["Eliminar","Salir"]
+                eliminar = eg.indexbox(msg1, titulo1, opciones1)
+                if eliminar == 0: 
+                    Cola.pop(0)
+                    #eg.msgbox(msg:str= "Dato eliminado", title:str="Eliminado",ok_button:str= "ok"):
+                else:
+                    break
+
+            if menu == 2: 
+                if len(Cola)>0:
+                    eg.msgbox(msg="la cola no se encuentra vacia",title="la cola no esta vacia")
+                if len(Cola) == 0:
+                    eg.msgbox(msg="la cola se encuentra vacia",title="la cola esta vacia")
+                break
+            if menu == 3:
+                eg.msgbox(msg=str(Cola),title="Estado actual de la cola ")
+                break
+            if menu == 4:
+                elementos = print("Pilas ",len(Cola))
+                eg.msgbox(resultado=str(elementos))
+                break
+            if menu == 5:
+                break
+        if menu == 5:
+            break
