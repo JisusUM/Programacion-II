@@ -35,13 +35,14 @@ class Item:
         self.proveedor = proveedor
 
 
-lista = []
+cola = []
+pila = []
 if __name__ == '__main__':
     while True:
         msg:str = "Colas Circulares--Clase Item"
         titulo:str = "Opciones a realizar"
         opciones = ["Agregar  accesorio","Eliminar acesorio","Verificar si la cola esta vacia","Mostrar accesorios","Aplicar pila"]
-        elementos = print("Elementos en cola: ",len(lista))
+        elementos = print("Elementos en cola: ",len(cola))
         menu = eg.indexbox(msg,titulo,opciones,elementos)
         while True:
             if menu == 0:
@@ -51,7 +52,7 @@ if __name__ == '__main__':
                 agrega = eg.indexbox(msg1, titulo1, opciones1)
                 if agrega == 0:
                     dato = eg.enterbox(msg ="Agregar accesorio", title="Agrega un dato")
-                    lista.append(dato)
+                    cola.append(dato)
                 else:
                     break
 
@@ -61,26 +62,26 @@ if __name__ == '__main__':
                 opciones1=["Eliminar","Salir"]
                 eliminar = eg.indexbox(msg1, titulo1, opciones1)
                 if eliminar == 0: 
-                    lista.pop(0)
+                    cola.pop(0)
                     #eg.msgbox(msg:str= "Dato eliminado", title:str="Eliminado",ok_button:str= "ok"):
                 else:
                     break
 
             if menu == 2: 
-                if len(lista)>0:
+                if len(cola)>0:
                     eg.msgbox(msg="la cola no se encuentra vacia",title="la cola no esta vacia")
-                if len(lista) == 0:
+                if len(cola) == 0:
                     eg.msgbox(msg="la cola se encuentra vacia",title="la cola esta vacia")
                 break
             if menu == 3:
-                eg.msgbox(msg=str(lista),title="Estado actual de la cola ")
+                eg.msgbox(msg=str(cola),title="Estado actual de la cola ")
                 break
             if menu == 4:
                     while True:
                         msg:str = "Pila--Clase Item"
                         titulo:str = "Opciones a realizar"
                         opciones = ["Agregar a la pila","Eliminar elemento","Verificar si la cola esta vacia","Mostrar accesorios","Salir"]
-                        elementos = print("Elementos en pila: ",len(lista))
+                        elementos = print("Elementos en pila: ",len(pila))
                         menu = eg.indexbox(msg,titulo,opciones,elementos)
                         if menu == 0:
                             msg1 = "Agregar datos"
@@ -89,7 +90,7 @@ if __name__ == '__main__':
                             agrega = eg.indexbox(msg1, titulo1, opciones1)
                             if agrega == 0:
                                 dato1 = eg.enterbox(msg ="Agrega un dato cualquiera", title="Agrega un dato a la pila ")
-                                lista.append(dato1)
+                                pila.append(dato1)
                             else:
                                 break
                         if menu == 1:
@@ -98,18 +99,18 @@ if __name__ == '__main__':
                             opciones1=["Eliminar","Salir"]
                             eliminar = eg.indexbox(msg1, titulo1, opciones1)
                             if eliminar == 0: 
-                                lista.pop(0)
+                                n=pila.pop()
                                 #eg.msgbox(msg:str= "Dato eliminado", title:str="Eliminado",ok_button:str= "ok"):
                             else:
                                 break
                         if menu == 2: 
-                            if len(lista)>0:
+                            if len(pila)>0:
                                 eg.msgbox(msg="la cola no se encuentra vacia",title="la cola no esta vacia")
-                            if len(lista) == 0:
+                            if len(pila) == 0:
                                 eg.msgbox(msg="la cola se encuentra vacia",title="la cola esta vacia")
                             break
                         if menu == 3:
-                            eg.msgbox(msg=str(lista),title="Estado actual de la cola ")
+                            eg.msgbox(msg=str(pila),title="Estado actual de la cola ")
                             break   
                     if menu == 5:
                         break
