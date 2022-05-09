@@ -1,4 +1,4 @@
-class userCrud:
+class user:
     # Declaración del constructor
     def __init__(self, __dni:int, __name:str, __lastName:str, __gender:str, __phoneNumber:str, __emergencyContact:str,
                 __emailAddress:str, __address:str):

@@ -7,6 +7,7 @@ from itemCrud import Item
 from SupplierCrud import Proveedor
 from GymCrud import Gym
 from CampusCrud import Campus
+from userCrud import user
 
 if __name__ == '__main__':
     def optProducto():
@@ -71,8 +72,8 @@ if __name__ == '__main__':
                 borrar()
             elif(opcion == '2'):
                 modificar() 
-            elif(opcion == '0'):
-                buscarPorID()
+            #elif(opcion == '0'):
+                #buscarPorID()
             else:
                 print("Opcion incorrecta")
     
@@ -208,8 +209,8 @@ if __name__ == '__main__':
                 borrar()
             elif(opcion == '2'):
                 modificar()
-            elif(opcion == '0'):
-                buscarPorID() 
+            #elif(opcion == '0'):
+                #buscarPorID() 
             else:
                 print("Opcion incorrecta")
     def partition(listaItem, start, end, compare_func):
@@ -292,6 +293,7 @@ if __name__ == '__main__':
             correo = str(input("Ingrese el correo electronico"))
             itemNuevo = Proveedor(nit,nombre,telefono,correo)
             lista.append(itemNuevo)#append lo que hace es agragar en la cola el nuevo dato , depes del ultimo elemento + 1
+            lista = []
             #print(itemNuevo)
 
         def informar():
@@ -337,8 +339,8 @@ if __name__ == '__main__':
                 borrar()
             elif(opcion == '2'):
                 modificar() 
-            elif(opcion == '0'):
-                buscarPorID()
+            #elif(opcion == '0'):
+                #buscarPorID()
             else:
                 print("Opcion incorrecta")
 
@@ -609,7 +611,94 @@ if __name__ == '__main__':
     for Campus in campus:
         print(Campus)
     
+    def optUser():
+        def createC():
+            __dni = str(input("Ingrese el Nit : "))
+            __name=str(input("Ingrese el nombre del gimnasio: "))
+            __lastName= str(input("Ingrese la dirección: "))
+            __gender = str(input(""))
+            __phoneNumber = str(input("Ingrese telefono: "))
+            nuevoUser = user(__dni,__name,__lastName,__gender,__phoneNumber)
+            campus.append(nuevoUser)
+            print(nuevoUser)
 
+        def listarC():
+            print("  ")
+            print("-----Informe-----")
+            for indice in range(0, len(campus)):
+                print(f"{indice + 1 } - {campus[indice]}")
+
+
+        def deleteC():
+            listarC()
+            indice = int(input("Ingrese el numero del Gimnasio a eliminar"))
+            print(f"Esta seguro/a de eliminar a {campus[indice -1].getCampusName()} {campus[indice -1].getDni()} {campus[indice -1].getName()}")
+            respuesta = input("S- si N- no").lower()
+            if (respuesta == "s"):
+                campus.remove(campus[indice - 1])
+
+        def modificarC():
+            listarC()
+            indice = int(input("Ingrese el numero del gimnasio a modificar: "))
+            __name= input("Ingrese el nuevo nombre del gimnasio: ")
+            campus[indice - 1].setName(__name)
+            __lastname = input("Ingrese la nueva dirección: ")
+            campus[indice - 1].setLastName(__lastname)
+            __gender= input("Ingrese el nuevo telefono: ")
+            campus[indice - 1].setGender(__gender)
+        opt = ''
+        while (opt != "x"):
+            opt = str(input("""  Ingrese una de las siguientes opciones
+        //-----------//-----------//-----------//
+        C-) CREAR NUEVO USUARIO
+        R-) LISTAR USUARIO
+        U-) MODIFICAR USUARIO
+        D-) ELIMINAR USUARIO
+        X-) SALIR
+        """).lower())
+        #F-) BUSCAR GIMNASIO
+
+            if opt == 'x':
+                print('Hasta Pronto')
+            if opt == 'c':
+                createC()
+            if opt == 'r':
+                listarC()
+            if opt == 'u':
+                modificarC()
+            if opt == 'd':
+                deleteC()
+            else:
+                print("Opcion incorrecta")
+        
+    def partition(campus, start, end, compare_func):
+        pivot = campus[start]
+        low = start + 1
+        high = end
+
+        while True:
+            while low <= high and compare_func(campus[high], pivot):
+                high = high - 1
+
+            while low <= high and not compare_func(campus[low], pivot):
+                low = low + 1
+
+            if low <= high:
+                campus[low], campus[high] = campus[high], campus[low]
+            else:
+                break
+
+        campus[start], campus[high] = campus[high], campus[start]
+
+        return high
+
+    def quick_sort(campus, start, end, compare_func):
+        if start >= end:
+            return
+
+        p = partition(campus, start, end, compare_func)
+        quick_sort(campus, start, p-1, compare_func)
+        quick_sort(campus, p+1, end, compare_func)
 
     def menu():
         opt:str = ""
@@ -621,6 +710,7 @@ if __name__ == '__main__':
     4-) MODULO PRODUCTOS
     5-) MODULO GYM
     6-) MODULO CAMPUS
+    7-) MODULO USUARIO
     0-) SALIR
     """).lower())
     #F-) BUSCAR USUARIO
@@ -637,6 +727,8 @@ if __name__ == '__main__':
                 optGym()
             elif opt == '6':
                 optCampus()
+            elif opt == '7':
+                optUser()
             else:
                 print("Opcion incorrecta")
     menu()
