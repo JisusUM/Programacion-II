@@ -122,7 +122,7 @@ if __name__ == '__main__':
         print(Product)
     
     #Algoritmo de Buscar 
-    def buscarPorID():
+    """def buscarPorID():
         def busqueda_binaria(listaProduct, busqueda):
             izquierda, derecha = 0, len(listaProduct) - 1
             while izquierda <= derecha:
@@ -137,14 +137,14 @@ if __name__ == '__main__':
             # Si salimos del ciclo significa que no existe el valor
             return -1
 
-        """
-        Probar con listaProduct de cadenas
-        """
+        
+        #Probar con listaProduct de cadenas
+        
         listaProduct = []
         print("La otra lista es:", listaProduct)
         busqueda = str(input("\n ingresa  nombre product  de la listaProduct anterior:"))
         indice = busqueda_binaria(listaProduct, busqueda)
-        print("El elemento {} está en el índice {}".format(busqueda, indice))
+        print("El elemento {} está en el índice {}".format(busqueda, indice))"""
 
     def optItem():
         def agregar(): # funcion o metodo
@@ -259,7 +259,7 @@ if __name__ == '__main__':
         print(Item)
 
     #Algoritmo de Buscar 
-    def buscarPorID():
+    """def buscarPorID():
         def busqueda_binaria(listaItem, busqueda):
             izquierda, derecha = 0, len(listaItem) - 1
             while izquierda <= derecha:
@@ -274,16 +274,14 @@ if __name__ == '__main__':
             # Si salimos del ciclo significa que no existe el valor
             return -1
 
-        """
+        
         Probar con listaItem de cadenas
-        """
+        
         listaItem = []
         print("La otra lista es:", listaItem)
         busqueda = str(input("\n ingresa  nombre Item  de la listaItem anterior:"))
         indice = busqueda_binaria(listaItem, busqueda)
-        print("El elemento {} está en el índice {}".format(busqueda, indice))
-
-        
+        print("El elemento {} está en el índice {}".format(busqueda, indice))"""
 
 
     def optProveedor():
@@ -391,7 +389,7 @@ if __name__ == '__main__':
         print(Proveedor)
     
     #Algoritmo de Buscar 
-    def buscarPorID():
+    """def buscarPorID():
         def busqueda_binaria(lista, busqueda):
             izquierda, derecha = 0, len(lista) - 1
             while izquierda <= derecha:
@@ -406,14 +404,14 @@ if __name__ == '__main__':
             # Si salimos del ciclo significa que no existe el valor
             return -1
 
-        """
+        
         Probar con lista de cadenas
-        """
+        
         lista = []
         print("La otra lista es:", lista)
         busqueda = str(input("\n ingresa  nombre product  de la lista anterior:"))
         indice = busqueda_binaria(lista, busqueda)
-        print("El elemento {} está en el índice {}".format(busqueda, indice))
+        print("El elemento {} está en el índice {}".format(busqueda, indice))"""
 
        
     def optGym():
