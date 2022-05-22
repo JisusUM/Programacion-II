@@ -249,7 +249,7 @@ if __name__ == '__main__':
     item3=Item('3','Cuerdas',30,'activo','Ejercicios ','Stool','adidas')
     item4=Item('4','Sillas',15,'activo','Ejercicios ','Stool','adidas')
     item5=Item('5','Guantes',45,'activo','Ejercicios ','Stool','adidas')
-    listaItem.append(item1)
+    listaItem.append(item1.tipo)
     listaItem.append(item2)
     listaItem.append(item3)
     listaItem.append(item4)
