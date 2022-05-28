@@ -25,7 +25,7 @@ class ListaDoblementeEnlazada(Item):
         
         self.contador += 1
     
-    def iterar(self):
+    def iterar(self):#Metodo de instancia
         actual = self.cabeza
 
         while actual:
@@ -170,7 +170,7 @@ print()
 
 print('Modificación valores de la lista a partir de un índice:')
 
-# listaItem[-1] = 19 # Genera excepción
+# #listaItem[-1] = 19 # Genera excepción
 print('Cantidad actual de elementos: %i' % listaItem.contador)
 print('Contenido en la posición 5 antes de la modificación: %i' % listaItem[5])
 listaItem[5] = 17
