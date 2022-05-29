@@ -71,9 +71,6 @@ class ListaDoblementeEnlazada(Item):
         else:
             while actual:
                 if actual.dato == dato:
-                    # Antes: 2 = 3 = 5 = 7 = 11
-                    # Actual: 3
-                    # Después: 2 = 5 = 7 = 11
                     actual.anterior.siguiente = actual.siguiente
                     actual.siguiente.anterior = actual.anterior
                     eliminado = True
@@ -123,7 +120,6 @@ listaItem.insertar(item4)
 listaItem.insertar(item5)
 
 print('Cantidad actual de elementos:', listaItem.contador)
-
 print()
 
 for d in listaItem.iterar():
@@ -140,26 +136,19 @@ for d in listaItem.iterar():
 
 print()
 
-print('Búsqueda de un dato')
-numero = 19
-print('¿Se halla 19 en la lista?:', listaItem.buscar(numero))
-numero = 7
-print('¿Se halla 7 en la lista?:', listaItem.buscar(numero))
-
-print()
 
 print('Eliminación de datos:')
-numero = 1
+listaItem = item1
 print('Cantidad de elementos antes de la eliminación:', listaItem.contador)
-listaItem.eliminar(numero)
+listaItem.eliminar(listaItem)
 print('Cantidad de elementos después de la eliminación:', listaItem.contador)
-print('¿Este el valor 1 en la lista?:', listaItem.buscar(numero))
+print('¿Este el valor 1 en la lista?:', listaItem.buscar(listaItem))
 
 print()
 
 print('Acceso a un elemento por medio de su índice:')
-# indice = -1
-# print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice])) # Genera excepción
+indice = -1
+print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice])) # Genera excepción
 indice = 0
 print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
 indice = 2
@@ -168,14 +157,14 @@ indice = 3
 print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
 indice = 4
 print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
-# indice = 7
-# print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice])) # Genera excepción
+indice = 7
+print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice])) # Genera excepción
 
 print()
 
 print('Modificación valores de la lista a partir de un índice:')
 
-# #listaItem[-1] = 19 # Genera excepción
+listaItem[-1] = 19 # Genera excepción
 print('Cantidad actual de elementos: %i' % listaItem.contador)
 print('Contenido en la posición 5 antes de la modificación: %i' % listaItem[5])
 listaItem[5] = 17
