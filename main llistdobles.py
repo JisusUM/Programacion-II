@@ -46,6 +46,24 @@ class ListaDoblementeEnlazada(Item):
             self.cabeza = nodo
 
             self.contador += 1
+
+    def insert(self,pos,dato): #Añadir nodo a cualquier posición
+        if pos<=0:
+            self.add(dato)
+        elif pos>(self.length()-1):
+            self.append(dato)
+        else:
+            p = self._head
+            nodo = Nodo(dato)
+            count = 0
+            while (count < pos):
+                p = p.next
+                count += 1
+                # Cuando el bucle termina, p apunta a la posición de pos
+                nodo.next = p
+                nodo.prior=p.prior
+                p.prior.next=nodo
+                p.prior=nodo
     
     def buscar(self, dato):
         for d in self.iterar():
@@ -103,8 +121,8 @@ class ListaDoblementeEnlazada(Item):
 
 
 listaItem = ListaDoblementeEnlazada()
-print('Cantidad después de crear la lista:', listaItem.contador)
-listaItem.insertar(2)
+#print('Cantidad después de crear la lista:', listaItem.contador)
+#listaItem.insertar(2)
 print('Cantidad después de insertar un elemento en la lista:', listaItem.contador)
 
 item1=Item('1','Colchoneta',8,'activo','Ejercicios ABS','Stool','Jisus')
@@ -127,8 +145,8 @@ for d in listaItem.iterar():
 
 print()
 
-listaItem.insertar_inicio(0)
-listaItem.insertar_inicio(1)
+#listaItem.insertar_inicio(0)
+#istaItem.insertar_inicio(1)
 print('Cantidad de elementos después de insertar el valor cero:', listaItem.contador)
 
 for d in listaItem.iterar():
@@ -138,34 +156,11 @@ print()
 
 
 print('Eliminación de datos:')
-listaItem = item1
+item1 = item1
 print('Cantidad de elementos antes de la eliminación:', listaItem.contador)
-listaItem.eliminar(listaItem)
+listaItem.eliminar(item1)
 print('Cantidad de elementos después de la eliminación:', listaItem.contador)
-print('¿Este el valor 1 en la lista?:', listaItem.buscar(listaItem))
+print('¿Este el valor item1 en la lista?:', listaItem.buscar(listaItem))
 
 print()
 
-print('Acceso a un elemento por medio de su índice:')
-indice = -1
-print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice])) # Genera excepción
-indice = 0
-print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
-indice = 2
-print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
-indice = 3
-print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
-indice = 4
-print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
-indice = 7
-print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice])) # Genera excepción
-
-print()
-
-print('Modificación valores de la lista a partir de un índice:')
-
-listaItem[-1] = 19 # Genera excepción
-print('Cantidad actual de elementos: %i' % listaItem.contador)
-print('Contenido en la posición 5 antes de la modificación: %i' % listaItem[5])
-listaItem[5] = 17
-print('Contenido en la posición 5 después de la modificación: %i' % listaItem[5])
