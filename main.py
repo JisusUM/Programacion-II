@@ -182,6 +182,37 @@ if __name__ == '__main__':
                 
                 self.contador += 1
             
+            def is_empty(self):  # ¿Está vacía la lista vinculada?
+                return self._head == None
+            
+            def append(self,dato):   #Añadir nodos a la cola
+                nodo = Nodo(dato)
+                if self.is_empty():
+                    self._head=nodo
+                else:
+                    p = self._head
+                    while(p.next!=None):
+                        p=p.next
+                    p.next=nodo
+                    nodo.prior=p
+            def insert(self,pos,dato): #Añadir nodo a cualquier posición
+                if pos<=0:
+                    self.insertar(dato)
+                elif pos>(self.length()-1):
+                    self.append(dato)
+                else:
+                    p = self._head
+                    nodo = Nodo(dato)
+                    count = 0
+                    while (count < pos):
+                        p = p.next
+                        count += 1
+                        # Cuando el bucle termina, p apunta a la posición de pos
+                        nodo.next = p
+                        nodo.prior=p.prior
+                        p.prior.next=nodo
+                        p.prior=nodo
+            
             def iterar(self):#Metodo de instancia
                 actual = self.cabeza
 
@@ -304,7 +335,164 @@ if __name__ == '__main__':
         listaProduct[2] = product5.productId,product5.productNombre,product5.precio
         print('Contenido en la posición 3 después de la modificación: ', listaProduct[2])
 
+        print('Insertando elemento en cualquier posición ')
+        listaProduct = ListaDoblementeEnlazada ()
+        #print(listaProduct.is_empty())
+        listaProduct.insertar(2)
 
+    def optProveedor():
+        class Nodo(Proveedor):
+            def __init__(self, dato=None, siguiente=None, anterior=None):
+                self.dato = dato
+                self.siguiente = siguiente
+                self.anterior = anterior
+
+        class ListaDoblementeEnlazada(Proveedor):
+            def __init__(self):
+                self.cabeza = None
+                self.cola = None
+                self.contador = 0
+            
+            def insertar(self, dato):
+                nodo = Nodo(dato)
+
+                if self.cabeza is None:
+                    self.cabeza = nodo
+                    self.cola = self.cabeza
+                else:
+                    nodo.anterior = self.cola
+                    self.cola.siguiente = nodo
+                    self.cola = nodo
+                
+                self.contador += 1
+            
+            def iterar(self):#Metodo de instancia
+                actual = self.cabeza
+
+                while actual:
+                    dato = actual.dato
+                    actual = actual.siguiente
+                    yield dato
+
+
+            def insertar_inicio(self, dato):
+                if self.cabeza is not None:
+                    nodo = Nodo(dato)
+                    nodo.siguiente = self.cabeza
+                    self.cabeza.anterior = nodo
+                    self.cabeza = nodo
+
+                    self.contador += 1
+            
+            def eliminar(self, dato):
+                actual = self.cabeza
+                eliminado = False
+
+                if actual is None:
+                    eliminado = False
+                elif actual.dato == dato:
+                    self.cabeza = actual.siguiente
+                    self.cabeza.anterior = None
+                    eliminado = True
+                elif self.cola.dato == dato:
+                    self.cola = self.cola.anterior
+                    self.cola.siguiente = None
+                    eliminado = True
+                else:
+                    while actual:
+                        if actual.dato == dato:
+                            actual.anterior.siguiente = actual.siguiente
+                            actual.siguiente.anterior = actual.anterior
+                            eliminado = True
+                        actual = actual.siguiente
+                
+                if eliminado:
+                    self.contador -= 1
+            
+            def __getitem__(self, indice):
+                if indice >= 1 and indice < self.contador:
+                    actual = self.cabeza
+
+                    for _ in range(indice - 1):
+                        actual = actual.siguiente
+                    
+                    return actual.dato
+                else:
+                    raise Exception('Índice no válido. Está por fuera del rango.')
+            
+            def __setitem__(self, indice, dato):
+                if indice >= 1 and indice < self.contador:
+                    actual = self.cabeza
+
+                    for _ in range(indice -1):
+                        actual = actual.siguiente
+                    
+                    actual.dato = dato
+                else:
+                    raise Exception('Índice no válido. Está por fuera del rango.')
+
+        lista = ListaDoblementeEnlazada() 
+        print('Cantidad antes de insertar un elemento en la lista:', lista.contador)
+
+        item1=Proveedor(895053265,"COlCALDAS","3205437504","caldas@gmail.com")
+        item2=Proveedor(895052665,"COl","32054315204","cals@gmail.com")
+        item3=Proveedor(895053265,"COlCALDAS","3205437504","caldas@gmail.com")
+        item4=Proveedor(895052665,"COl","32054315204","cals@gmail.com")
+        item5=Proveedor(895053265,"COlCALDAS","3205437504","caldas@gmail.com")
+        item6=Proveedor(895052665,"COl","32054315204","cals@gmail.com")
+        print()
+        lista.insertar(item1)
+        lista.insertar(item2)
+        lista.insertar(item3)
+        lista.insertar(item4)
+        lista.insertar(item5)
+
+        print('Cantidad actual de elementos:', lista.contador)
+        print()
+
+        for d in lista.iterar():
+            print(d)
+
+        print()
+
+        lista.insertar_inicio(item6)
+        print('Cantidad de elementos después de insertar el elementos: ', lista.contador)
+
+        for d in lista.iterar():
+            print(d)
+
+        print()
+
+        print('Eliminación de datos:')
+        item1 = item1
+        lista.eliminar(item1)
+        print('Cantidad de elementos después de eleminar el elemento: ', lista.contador)
+        for d in lista.iterar():
+            print(d)
+
+        print()
+
+        print('Eliminación de datos especificando cualquier elemento:')
+        item5 = item5
+        print('Cantidad de elementos antes de la eliminación:', lista.contador)
+        lista.eliminar(item5)
+
+        print('Cantidad de elementos después de eleminar el elemento: ', lista.contador)
+        for d in lista.iterar():
+            print(d)
+
+        print()
+
+        print('Insertando valores de la lista a partir de un índice:')
+        print('Cantidad actual de elementos: %i' % lista.contador)
+        print('Contenido en la posición 2 antes de la modificación: ' ,lista[2])
+        item5.nombre = 'COLCLI'
+        item5.telefono= '3009121255'
+        item5.correo = 'JESUH.@GMAIL.COM'
+        lista[2] = item5.nombre,item5.telefono,item5.correo
+        print('Contenido en la posición 2 después de la modificación: ', lista[2])
+
+            
     
     def menu():
         opt:str = ""
