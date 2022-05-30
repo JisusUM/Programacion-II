@@ -1,61 +1,28 @@
-from enum import Enum
-from datetime import date, datetime
-from typing import Any
 import easygui as eg
-
-class Product:
-    def __init__(self, productId:int,productNombre:str,precio:float,marca:str,vencimiento:datetime,disponible:bool,proveedor:Any):
-        self.productId:int= productId
-        self.productNombre:str = productNombre
-        self.precio:float = precio
-        self.marca:str = marca
-        self.vencimiento:datetime = vencimiento
-        self.disponible:bool = disponible
-        self.proveedor = proveedor
-        
-
-    def __str__(self):
-        return f"Id Produc {str(self.productId)},Nombre {str(self.productNombre)},precio= {str(self.precio)}"
-    def getProductNombre(self):
-        return self.productNombre
-    def getPrecio(self):
-        return self.precio
-    def setProductNombre(self,productNombre):
-        self.productNombre = productNombre
-    def setPrecio(self,precio):
-        self.precio = precio
-    def setMarca(self,marca):
-        self.marca= marca
-    def setVencimiento(self,vencimiento):
-        self.vencimiento= vencimiento
-    def setDisponible(self,disponible):
-        self.disponible= disponible
-    def setProveedor(self,proveedor):
-        self.proveedor= proveedor
 
 cola = []
 pila = []
 if __name__ == '__main__':
     while True:
-        msg:str = "Colas Circulares--Clase Producto"
+        msg:str = "Colas Circulares--Clase Item"
         titulo:str = "Opciones a realizar"
-        opciones = ["Agregar  producto","Eliminar producto","Verificar si la cola esta vacia","Mostrar producto","Aplicar pila"]
+        opciones = ["Agregar Usuario","Eliminar acesorio","Verificar si la cola esta vacia","Mostrar Usuarios","Aplicar pila"]
         elementos = print("Elementos en cola: ",len(cola))
         menu = eg.indexbox(msg,titulo,opciones,elementos)
         while True:
             if menu == 0:
-                msg1 = "Agregar productos"
+                msg1 = "Agregar Usuario"
                 titulo1 = "Agregar algun dato en la cola circular"
                 opciones1 = ["Agregar","Salir"]
                 agrega = eg.indexbox(msg1, titulo1, opciones1)
                 if agrega == 0:
-                    dato = eg.enterbox(msg ="Agregar accesorio", title="Agrega un dato")
+                    dato = eg.enterbox(msg ="Agregar Usuario", title="Agrega un dato")
                     cola.append(dato)
                 else:
                     break
 
             if menu == 1:
-                msg1 = "Eliminar dato"
+                msg1 = "Eminar dato"
                 titulo1 = "Eliminar algun dato"
                 opciones1=["Eliminar","Salir"]
                 eliminar = eg.indexbox(msg1, titulo1, opciones1)
@@ -76,9 +43,9 @@ if __name__ == '__main__':
                 break
             if menu == 4:
                     while True:
-                        msg:str = "Pila--Clase producto"
+                        msg:str = "Pila--Clase Item"
                         titulo:str = "Opciones a realizar"
-                        opciones = ["Agregar a la pila","Eliminar elemento","Verificar si la cola esta vacia","Mostrar accesorios","Salir"]
+                        opciones = ["Agregar a la pila","Eliminar elemento","Verificar si la cola esta vacia","Mostrar Usuarios","Salir"]
                         elementos = print("Elementos en pila: ",len(pila))
                         menu = eg.indexbox(msg,titulo,opciones,elementos)
                         if menu == 0:
@@ -92,7 +59,7 @@ if __name__ == '__main__':
                             else:
                                 break
                         if menu == 1:
-                            msg1 = "Eliminar dato"
+                            msg1 = "Eminar dato"
                             titulo1 = "Eliminar algun dato"
                             opciones1=["Eliminar","Salir"]
                             eliminar = eg.indexbox(msg1, titulo1, opciones1)
@@ -108,7 +75,7 @@ if __name__ == '__main__':
                                 eg.msgbox(msg="la cola se encuentra vacia",title="la cola esta vacia")
                             break
                         if menu == 3:
-                            eg.msgbox(msg=str(pila),title="Estado actual de la pila ")
+                            eg.msgbox(msg=str(pila),title="Estado actual de la cola ")
                             break   
                     if menu == 5:
                         break

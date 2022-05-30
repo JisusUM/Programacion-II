@@ -1,194 +1,99 @@
-def optGym():
-        def create():
-            _nit = int(input("Ingrese el Nit : "))
-            _name= str(input("Ingrese el nombre del gimnasio: "))
-            _address = str(input("Ingrese la dirección: "))
-            _phone = str(input("Ingrese telefono: "))
-            nuevoGym = Gym(_nit, _name, _address, _phone)
-            list.append(nuevoGym)
-            print(nuevoGym)
+class Node(object):
+    def __init__(self,item):
+        self.item=item
+        self.next=None
+        self.prior=None
 
-        def listar():
-            print("  ")
-            print("-----Informe-----")
-            for indice in range(0, len(list)):
-                print(f"{indice + 1 } - {list[indice]}")
+class DoubleLinkList(object):
+    "" "Lista doblemente enlazada" ""
+    def __init__(self,node=None): #Si no se pasa el nodo, el valor predeterminado es vacío
+        self._head=node
+
+    def is_empty(self):  # ¿Está vacía la lista vinculada?
+        return self._head == None
+
+    def length(self):   # Longitud de la lista de enlaces
+        p = self._head  # p para mover el nodo transversal
+        count = 0
+        while (p != None):  #Si la condición del bucle es p.next! = None, hasta que se alcance el último nodo, la condición no se cumple y sale, no se puede contar el recuento
+            count += 1
+            p = p.next
+        return count
+
+    def travel(self):    # Recorre toda la lista vinculada
+        p=self._head
+        while(p!=None):
+            print(p.item,end=' ')
+            p=p.next
+
+    def add(self,item):   #Añadir nodos a la cabeza
+        node=Node(item)
+        if self.is_empty():
+            self._head=node
+        else:
+            node.next=self._head
+            self._head.prior=node
+            self._head=node
+
+    def append(self,item):   #Añadir nodos a la cola
+        node = Node(item)
+        if self.is_empty():
+            self._head=node
+        else:
+            p = self._head
+            while(p.next!=None):
+                p=p.next
+            p.next=node
+            node.prior=p
+    def insert(self,pos,item): #Añadir nodo a cualquier posición
+        if pos<=0:
+            self.add(item)
+        elif pos>(self.length()-1):
+            self.append(item)
+        else:
+            p = self._head
+            node = Node(item)
+            count = 0
+            while (count < pos):
+                p = p.next
+                count += 1
+                # Cuando el bucle termina, p apunta a la posición de pos
+                node.next = p
+                node.prior=p.prior
+                p.prior.next=node
+                p.prior=node
 
 
-        def delete():
-            listar()
-            indice = int(input("Ingrese el numero del Gimnasio a eliminar"))
-            print(f"Esta seguro/a de eliminar a {list[indice -1].getName()} {list[indice -1].getPhone()} {list[indice -1].getAddress()}")
-            respuesta = input("S- si N- no").lower()
-            if (respuesta == "s"):
-                list.remove(list[indice - 1])
-
-        def modificar():
-            listar()
-            indice = int(input("Ingrese el numero del gimnasio a modificar: "))
-            _name = input("Ingrese el nuevo nombre del gimnasio: ")
-            list[indice - 1].setName(_name)
-            _address = input("Ingrese la nueva dirección: ")
-            list[indice - 1].setAddress(_address)
-            _phone = input("Ingrese el nuevo telefono: ")
-            list[indice - 1].setName(_phone)
-        opt = ''
-        while (opt != "x"):
-            opt = str(input("""  Ingrese una de las siguientes opciones
-        //-----------//-----------//-----------//
-        C-) CREAR NUEVO GIMNASIO
-        R-) LISTAR GIMNASIOS
-        U-) MODIFICAR GIMNASIO
-        D-) ELIMINAR GIMNASIO
-        X-) SALIR
-        """).lower())
-        #F-) BUSCAR GIMNASIO
-
-            if opt == 'x':
-                print('Hasta Pronto')
-            if opt == 'c':
-                create()
-            if opt == 'r':
-                listar()
-            if opt == 'u':
-                modificar()
-            if opt == 'd':
-                delete()
-            else:
-                print("Opcion incorrecta")
-
-    def partition(list, start, end, compare_func):
-        pivot = list[start]
-        low = start + 1
-        high = end
-
-        while True:
-            while low <= high and compare_func(list[high], pivot):
-                high = high - 1
-
-            while low <= high and not compare_func(list[low], pivot):
-                low = low + 1
-
-            if low <= high:
-                list[low], list[high] = list[high], list[low]
-            else:
+    def remove(self,item):    # Eliminar un nodo
+        p=self._head
+        while(p!=None):  #Asegúrate de atravesar todos los nodos
+            if p.elem == item:
+                if p==self._head:
+                    self._head=p.next
+                    if p.next: # Juzgando que la lista enlazada tiene un solo nodo
+                        p.next.prior=None
+                else:
+                    p.prior.next=p.next
+                    if p.next:
+                        p.next.prior=p.prior
                 break
-
-        list[start], list[high] = list[high], list[start]
-
-        return high
-
-    def quick_sort(list, start, end, compare_func):
-        if start >= end:
-            return
-
-        p = partition(list, start, end, compare_func)
-        quick_sort(list, start, p-1, compare_func)
-        quick_sort(list, p+1, end, compare_func)
-            
-        list=[]
-        gym1 = Gym(900712196, "European Hardcore", "Chipre", "311 6987561")
-        list.append(gym1)
-        gym2 = Gym(800206239, "MMA Training", "La Sultana", "315 9876325")
-        list.append(gym2)
-        quick_sort(list, 0, len(list) - 1, lambda x, y: x.nit < y.nit)
-        for Gym in list:
-            print(Gym)
-
-
-    def optCampus():
-        def createC():
-            _campusNit = str(input("Ingrese el Nit : "))
-            _campusName= str(input("Ingrese el nombre del gimnasio: "))
-            _campusPhone = str(input("Ingrese la dirección: "))
-            _campusAddreess = str(input("Ingrese telefono: "))
-            nuevo = Campus(_campusNit,_campusName,_campusPhone,_campusAddreess)
-            campus.append(nuevo)
-            print(nuevo)
-
-        def listarC():
-            print("  ")
-            print("-----Informe-----")
-            for indice in range(0, len(campus)):
-                print(f"{indice + 1 } - {campus[indice]}")
-
-
-        def deleteC():
-            listarC()
-            indice = int(input("Ingrese el numero del Gimnasio a eliminar"))
-            print(f"Esta seguro/a de eliminar a {campus[indice -1].getCampusName()} {campus[indice -1].getCampusPhone()} {campus[indice -1].getCampusAddreess()}")
-            respuesta = input("S- si N- no").lower()
-            if (respuesta == "s"):
-                campus.remove(campus[indice - 1])
-
-        def modificarC():
-            listarC()
-            indice = int(input("Ingrese el numero del gimnasio a modificar: "))
-            _campusName = input("Ingrese el nuevo nombre del gimnasio: ")
-            campus[indice - 1].setCampusName(_campusName)
-            _campusPhone = input("Ingrese la nueva dirección: ")
-            campus[indice - 1].setCampusPhone(_campusPhone)
-            _campusAddreess = input("Ingrese el nuevo telefono: ")
-            campus[indice - 1].setCampusAddreess(_campusAddreess)
-        opt = ''
-        while (opt != "x"):
-            opt = str(input("""  Ingrese una de las siguientes opciones
-        //-----------//-----------//-----------//
-        C-) CREAR NUEVO CAMPUS
-        R-) LISTAR CAMPUS
-        U-) MODIFICAR CAMPUS
-        D-) ELIMINAR CAMPUS
-        X-) SALIR
-        """).lower())
-        #F-) BUSCAR GIMNASIO
-
-            if opt == 'x':
-                print('Hasta Pronto')
-            if opt == 'c':
-                createC()
-            if opt == 'r':
-                listarC()
-            if opt == 'u':
-                modificarC()
-            if opt == 'd':
-                deleteC()
             else:
-                print("Opcion incorrecta")
-        
-    def partition(campus, start, end, compare_func):
-        pivot = campus[start]
-        low = start + 1
-        high = end
+                p=p.next
 
-        while True:
-            while low <= high and compare_func(campus[high], pivot):
-                high = high - 1
+    def search(self, item):
+        "" "La lista vinculada busca si el nodo existe y devuelve Verdadero o Falso" ""
+        p = self._head
+        while p != None:
+            if p.elem == item:
+                return True
+            p = p.next
+        return False
 
-            while low <= high and not compare_func(campus[low], pivot):
-                low = low + 1
 
-            if low <= high:
-                campus[low], campus[high] = campus[high], campus[low]
-            else:
-                break
-
-        campus[start], campus[high] = campus[high], campus[start]
-
-        return high
-
-    def quick_sort(campus, start, end, compare_func):
-        if start >= end:
-            return
-
-        p = partition(campus, start, end, compare_func)
-        quick_sort(campus, start, p-1, compare_func)
-        quick_sort(campus, p+1, end, compare_func)
-
-        campus=[]
-        campus1 = Campus("900712196", "European Hardcore", "3205456526", "ldsjfodsjfoisa@gmail.com")
-        campus.append(campus1)
-        campus2 = Campus("900712196", "European Hardcore", "3205456526", "ldsjfodsjfoisa@gmail.com")
-        campus.append(campus2)
-        quick_sort(campus, 0, len(campus) - 1, lambda x, y: x.campusNit < y.campusNit)
-        for Campus in campus:
-            print(Campus)
+if __name__ == '__main__':
+    single_obj = DoubleLinkList()
+    print(single_obj.is_empty() )
+    single_obj.add(5)
+    single_obj.add(6)
+    single_obj.add(7)
+    single_obj.travel()

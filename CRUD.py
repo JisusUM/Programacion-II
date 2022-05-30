@@ -2,12 +2,12 @@ from asyncore import read
 from typing import Any, Type
 from Enums import Eps, Rh
 from datetime import time, datetime
-from productCrud import Product
-from itemCrud import Item
-from SupplierCrud import Proveedor
-from GymCrud import Gym
-from CampusCrud import Campus
-from userCrud import user
+from product import Product
+from item import Item
+from Supplier import Proveedor
+from Gym import Gym
+from Campus import Campus
+from user import user
 
 if __name__ == '__main__':
     def optProducto():

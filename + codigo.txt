@@ -1,133 +1,271 @@
-    """def optCampus():
-        def createC():
-            _campusNit = str(input("Ingrese el Nit : "))
-            _campusName= str(input("Ingrese el nombre del gimnasio: "))
-            _campusPhone = str(input("Ingrese la dirección: "))
-            _campusAddreess = str(input("Ingrese telefono: "))
-            nuevoGym = Campus(_campusNit,_campusName,_campusPhone,_campusAddreess)
-            campus.append(nuevoGym)
-            print(nuevoGym)
+class Node(object):
+    def __init__(self,item):
+        self.item=item
+        self.next=None
+        self.prior=None
 
-        def listarC():
-            print("  ")
-            print("-----Informe-----")
-            for indice in range(0, len(campus)):
-                print(f"{indice + 1 } - {campus[indice]}")
+class DoubleLinkList(object):
+    "" "Lista doblemente enlazada" ""
+    def __init__(self,node=None): #Si no se pasa el nodo, el valor predeterminado es vacío
+        self._head=node
+
+    def is_empty(self):  # ¿Está vacía la lista vinculada?
+        return self._head == None
+
+    def length(self):   # Longitud de la lista de enlaces
+        p = self._head  # p para mover el nodo transversal
+        count = 0
+        while (p != None):  #Si la condición del bucle es p.next! = None, hasta que se alcance el último nodo, la condición no se cumple y sale, no se puede contar el recuento
+            count += 1
+            p = p.next
+        return count
+
+    def travel(self):    # Recorre toda la lista vinculada
+        p=self._head
+        while(p!=None):
+            print(p.item,end=' ')
+            p=p.next
+
+    def add(self,item):   #Añadir nodos a la cabeza
+        node=Node(item)
+        if self.is_empty():
+            self._head=node
+        else:
+            node.next=self._head
+            self._head.prior=node
+            self._head=node
+
+    def append(self,item):   #Añadir nodos a la cola
+        node = Node(item)
+        if self.is_empty():
+            self._head=node
+        else:
+            p = self._head
+            while(p.next!=None):
+                p=p.next
+            p.next=node
+            node.prior=p
+    def insert(self,pos,item): #Añadir nodo a cualquier posición
+        if pos<=0:
+            self.add(item)
+        elif pos>(self.length()-1):
+            self.append(item)
+        else:
+            p = self._head
+            node = Node(item)
+            count = 0
+            while (count < pos):
+                p = p.next
+                count += 1
+                # Cuando el bucle termina, p apunta a la posición de pos
+                node.next = p
+                node.prior=p.prior
+                p.prior.next=node
+                p.prior=node
 
 
-        def deleteC():
-            listarC()
-            indice = int(input("Ingrese el numero del Gimnasio a eliminar"))
-            print(f"Esta seguro/a de eliminar a {campus[indice -1].getCampusName()} {campus[indice -1].getCampusPhone()} {campus[indice -1].getCampusAddreess()}")
-            respuesta = input("S- si N- no").lower()
-            if (respuesta == "s"):
-                campus.remove(campus[indice - 1])
-
-        def modificarC():
-            listarC()
-            indice = int(input("Ingrese el numero del gimnasio a modificar: "))
-            _campusName = input("Ingrese el nuevo nombre del gimnasio: ")
-            campus[indice - 1].setCampusName(_campusName)
-            _campusPhone = input("Ingrese la nueva dirección: ")
-            campus[indice - 1].setCampusPhone(_campusPhone)
-            _campusAddreess = input("Ingrese el nuevo telefono: ")
-            campus[indice - 1].setCampusAddreess(_campusAddreess)
-
-
-        campus:list=[]
-        campus1 = Campus("900712196", "European Hardcore", "Chipre", "cualquier cosa", True, 13, False, optUser())
-        campus.append(campus1)
-        campus2 = Campus("800206239", "MMA Training", "La Sultana", "cualquier otra cosa", False, 0, True, optUser())
-        campus.append(campus2)
-
-        opt = ''
-        while (opt != "x"):
-            opt = str(input("""  Ingrese una de las siguientes opciones
-        //-----------//-----------//-----------//
-        C-) CREAR NUEVO CAMPUS
-        R-) LISTAR CAMPUS
-        U-) MODIFICAR CAMPUS
-        D-) ELIMINAR CAMPUS
-        X-) SALIR
-        """).lower())
-        #F-) BUSCAR GIMNASIO
-
-            if opt == 'x':
-                print('Hasta Pronto')
-            if opt == 'c':
-                createC()
-            if opt == 'r':
-                listarC()
-            if opt == 'u':
-                modificarC()
-            if opt == 'd':
-                deleteC()
+    def remove(self,item):    # Eliminar un nodo
+        p=self._head
+        while(p!=None):  #Asegúrate de atravesar todos los nodos
+            if p.elem == item:
+                if p==self._head:
+                    self._head=p.next
+                    if p.next: # Juzgando que la lista enlazada tiene un solo nodo
+                        p.next.prior=None
+                else:
+                    p.prior.next=p.next
+                    if p.next:
+                        p.next.prior=p.prior
+                break
             else:
-                print("Opcion incorrecta")
+                p=p.next
 
-    def optGym():
-        def create():
-            _nit = str(input("Ingrese el Nit : "))
-            _name= str(input("Ingrese el nombre del gimnasio: "))
-            _address = str(input("Ingrese la dirección: "))
-            _phone = str(input("Ingrese telefono: "))
-            nuevoGym = Gym(_nit, _name, _address, _phone)
-            gyms.append(nuevoGym)
-            print(nuevoGym)
-
-        def listar():
-            print("  ")
-            print("-----Informe-----")
-            for indice in range(0, len(gyms)):
-                print(f"{indice + 1 } - {gyms[indice]}")
+    def search(self, item):
+        "" "La lista vinculada busca si el nodo existe y devuelve Verdadero o Falso" ""
+        p = self._head
+        while p != None:
+            if p.elem == item:
+                return True
+            p = p.next
+        return False
 
 
-        def delete():
-            listar()
-            indice = int(input("Ingrese el numero del Gimnasio a eliminar"))
-            print(f"Esta seguro/a de eliminar a {gyms[indice -1].getName()} {gyms[indice -1].getPhone()} {gyms[indice -1].getAddress()}")
-            respuesta = input("S- si N- no").lower()
-            if (respuesta == "s"):
-                gyms.remove(gyms[indice - 1])
+if __name__ == '__main__':
+    single_obj = DoubleLinkList()
+    print(single_obj.is_empty() )
+    single_obj.add(5)
+    single_obj.add(6)
+    single_obj.add(7)
+    single_obj.travel()
+-------------------------------------------------------------------------------------------------------
+from itemCrud import Item
+from productCrud import Product
+from SupplierCrud import Proveedor
+from GymCrud import Gym
+from CampusCrud import Campus
+from userCrud import user
 
-        def modificar():
-            listar()
-            indice = int(input("Ingrese el numero del gimnasio a modificar: "))
-            _name = input("Ingrese el nuevo nombre del gimnasio: ")
-            gyms[indice - 1].setName(_name)
-            _address = input("Ingrese la nueva dirección: ")
-            gyms[indice - 1].setAddress(_address)
-            _phone = input("Ingrese el nuevo telefono: ")
-            gyms[indice - 1].setName(_phone)
+class Nodo(Item):
+    def __init__(self, dato=None, siguiente=None, anterior=None):
+        self.dato = dato
+        self.siguiente = siguiente
+        self.anterior = anterior
+
+class ListaDoblementeEnlazada(Item):
+    def __init__(self):
+        self.cabeza = None
+        self.cola = None
+        self.contador = 0
+    
+    def insertar(self, dato):
+        nodo = Nodo(dato)
+
+        if self.cabeza is None:
+            self.cabeza = nodo
+            self.cola = self.cabeza
+        else:
+            nodo.anterior = self.cola
+            self.cola.siguiente = nodo
+            self.cola = nodo
+        
+        self.contador += 1
+    
+    def iterar(self):#Metodo de instancia
+        actual = self.cabeza
+
+        while actual:
+            dato = actual.dato
+            actual = actual.siguiente
+            yield dato
+
+    def insertar_inicio(self, dato):
+        if self.cabeza is not None:
+            nodo = Nodo(dato)
+            nodo.siguiente = self.cabeza
+            self.cabeza.anterior = nodo
+            self.cabeza = nodo
+
+            self.contador += 1
+    
+    def buscar(self, dato):
+        for d in self.iterar():
+            if dato == d:
+                return True
+        
+        return False
+    
+    def eliminar(self, dato):
+        actual = self.cabeza
+        eliminado = False
+
+        if actual is None:
+            eliminado = False
+        elif actual.dato == dato:
+            self.cabeza = actual.siguiente
+            self.cabeza.anterior = None
+            eliminado = True
+        elif self.cola.dato == dato:
+            self.cola = self.cola.anterior
+            self.cola.siguiente = None
+            eliminado = True
+        else:
+            while actual:
+                if actual.dato == dato:
+                    actual.anterior.siguiente = actual.siguiente
+                    actual.siguiente.anterior = actual.anterior
+                    eliminado = True
+                actual = actual.siguiente
+        
+        if eliminado:
+            self.contador -= 1
+    
+    def __getitem__(self, indice):
+        if indice >= 0 and indice < self.contador:
+            actual = self.cabeza
+
+            for _ in range(indice - 1):
+                actual = actual.siguiente
+            
+            return actual.dato
+        else:
+            raise Exception('Índice no válido. Está por fuera del rango.')
+    
+    def __setitem__(self, indice, dato):
+        if indice >= 0 and indice < self.contador:
+            actual = self.cabeza
+
+            for _ in range(indice - 1):
+                actual = actual.siguiente
+            
+            actual.dato = dato
+        else:
+            raise Exception('Índice no válido. Está por fuera del rango.')
 
 
-        gyms:list=[]
-        gym1 = Gym("900712196", "European Hardcore", "Chipre", "311 6987561")
-        gyms.append(gym1)
-        gym2 = Gym("800206239", "MMA Training", "La Sultana", "315 9876325")
-        gyms.append(gym2)
+listaItem = ListaDoblementeEnlazada()
+print('Cantidad después de crear la lista:', listaItem.contador)
+listaItem.insertar(2)
+print('Cantidad después de insertar un elemento en la lista:', listaItem.contador)
 
-        opt = ''
-        while (opt != "x"):
-            opt = str(input("""  Ingrese una de las siguientes opciones
-        //-----------//-----------//-----------//
-        C-) CREAR NUEVO GIMNASIO
-        R-) LISTAR GIMNASIOS
-        U-) MODIFICAR GIMNASIO
-        D-) ELIMINAR GIMNASIO
-        X-) SALIR
-        """).lower())
-        #F-) BUSCAR GIMNASIO
+item1=Item('1','Colchoneta',8,'activo','Ejercicios ABS','Stool','Jisus')
+item2=Item('2','balones',1,'activo','Ejercicios ','Stool','adidas')
+item3=Item('3','Cuerdas',30,'activo','Ejercicios ','Stool','adidas')
+item4=Item('4','Sillas',15,'activo','Ejercicios ','Stool','adidas')
+item5=Item('5','Guantes',45,'activo','Ejercicios ','Stool','adidas')
+print()
+listaItem.insertar(item1)
+listaItem.insertar(item2)
+listaItem.insertar(item3)
+listaItem.insertar(item4)
+listaItem.insertar(item5)
 
-            if opt == 'x':
-                print('Hasta Pronto')
-            if opt == 'c':
-                create()
-            if opt == 'r':
-                listar()
-            if opt == 'u':
-                modificar()
-            if opt == 'd':
-                delete()
-            else:
-                print("Opcion incorrecta")"""
+print('Cantidad actual de elementos:', listaItem.contador)
+print()
+
+for d in listaItem.iterar():
+    print(d)
+
+print()
+
+listaItem.insertar_inicio(0)
+listaItem.insertar_inicio(1)
+print('Cantidad de elementos después de insertar el valor cero:', listaItem.contador)
+
+for d in listaItem.iterar():
+    print(d)
+
+print()
+
+
+print('Eliminación de datos:')
+listaItem = item1
+print('Cantidad de elementos antes de la eliminación:', listaItem.contador)
+listaItem.eliminar(listaItem)
+print('Cantidad de elementos después de la eliminación:', listaItem.contador)
+print('¿Este el valor 1 en la lista?:', listaItem.buscar(listaItem))
+
+print()
+
+print('Acceso a un elemento por medio de su índice:')
+indice = -1
+print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice])) # Genera excepción
+indice = 0
+print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
+indice = 2
+print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
+indice = 3
+print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
+indice = 4
+print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice]))
+indice = 7
+print('Valor en la posición %i es igual a %i' % (indice, listaItem[indice])) # Genera excepción
+
+print()
+
+print('Modificación valores de la lista a partir de un índice:')
+
+listaItem[-1] = 19 # Genera excepción
+print('Cantidad actual de elementos: %i' % listaItem.contador)
+print('Contenido en la posición 5 antes de la modificación: %i' % listaItem[5])
+listaItem[5] = 17
+print('Contenido en la posición 5 después de la modificación: %i' % listaItem[5])

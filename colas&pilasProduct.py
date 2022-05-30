@@ -1,18 +1,17 @@
 import easygui as eg
 
-
+cola = []
+pila = []
 if __name__ == '__main__':
-    cola = []
-    pila = []
     while True:
-        msg:str = "Colas Circulares--Clase Item"
+        msg:str = "Colas Circulares--Clase Producto"
         titulo:str = "Opciones a realizar"
-        opciones = ["Agregar  accesorio","Eliminar acesorio","Verificar si la cola esta vacia","Mostrar accesorios","Aplicar pila"]
+        opciones = ["Agregar  producto","Eliminar producto","Verificar si la cola esta vacia","Mostrar producto","Aplicar pila"]
         elementos = print("Elementos en cola: ",len(cola))
         menu = eg.indexbox(msg,titulo,opciones,elementos)
         while True:
             if menu == 0:
-                msg1 = "Agregar accesorio"
+                msg1 = "Agregar productos"
                 titulo1 = "Agregar algun dato en la cola circular"
                 opciones1 = ["Agregar","Salir"]
                 agrega = eg.indexbox(msg1, titulo1, opciones1)
@@ -23,7 +22,7 @@ if __name__ == '__main__':
                     break
 
             if menu == 1:
-                msg1 = "Eminar dato"
+                msg1 = "Eliminar dato"
                 titulo1 = "Eliminar algun dato"
                 opciones1=["Eliminar","Salir"]
                 eliminar = eg.indexbox(msg1, titulo1, opciones1)
@@ -44,7 +43,7 @@ if __name__ == '__main__':
                 break
             if menu == 4:
                     while True:
-                        msg:str = "Pila--Clase Item"
+                        msg:str = "Pila--Clase producto"
                         titulo:str = "Opciones a realizar"
                         opciones = ["Agregar a la pila","Eliminar elemento","Verificar si la cola esta vacia","Mostrar accesorios","Salir"]
                         elementos = print("Elementos en pila: ",len(pila))
@@ -60,7 +59,7 @@ if __name__ == '__main__':
                             else:
                                 break
                         if menu == 1:
-                            msg1 = "Eminar dato"
+                            msg1 = "Eliminar dato"
                             titulo1 = "Eliminar algun dato"
                             opciones1=["Eliminar","Salir"]
                             eliminar = eg.indexbox(msg1, titulo1, opciones1)
@@ -76,7 +75,7 @@ if __name__ == '__main__':
                                 eg.msgbox(msg="la cola se encuentra vacia",title="la cola esta vacia")
                             break
                         if menu == 3:
-                            eg.msgbox(msg=str(pila),title="Estado actual de la cola ")
+                            eg.msgbox(msg=str(pila),title="Estado actual de la pila ")
                             break   
                     if menu == 5:
                         break
