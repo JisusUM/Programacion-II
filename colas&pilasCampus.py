@@ -1,4 +1,5 @@
 import easygui as eg
+from Campus import Campus
 
 cola = []
 pila = []
