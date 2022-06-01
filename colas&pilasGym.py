@@ -1,4 +1,5 @@
 import easygui as eg
+from Gym import Gym
 
 cola = []
 pila = []
