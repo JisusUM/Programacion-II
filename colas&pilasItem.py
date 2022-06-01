@@ -1,4 +1,5 @@
 import easygui as eg
+from item import Item
 
 cola = []
 pila = []
