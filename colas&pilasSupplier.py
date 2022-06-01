@@ -1,4 +1,5 @@
 import easygui as eg
+from Supplier import Proveedor
 
 cola = []
 pila = []
